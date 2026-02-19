@@ -1,0 +1,197 @@
+/* Custom CSS for World Publications Awards */
+
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navigation styles */
+.navbar-brand {
+    font-weight: 700;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+/* Card styles */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+    border: none;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0d1a4d, #8a1919);
+    border: none;
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: #1a2a6c;
+    border-color: #1a2a6c;
+}
+
+.btn-outline-primary:hover {
+    background: #1a2a6c;
+    border-color: #1a2a6c;
+    color: white;
+}
+
+/* Table styles */
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Form styles */
+.form-control:focus {
+    border-color: #1a2a6c;
+    box-shadow: 0 0 0 0.2rem rgba(26, 42, 108, 0.25);
+}
+
+/* Alert styles */
+.alert {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Badge styles */
+.badge {
+    font-weight: 500;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 0 !important;
+    }
+    
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Admin panel specific styles */
+.admin-sidebar {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 80px);
+    border-right: 1px solid #dee2e6;
+}
+
+.admin-content {
+    min-height: calc(100vh - 80px);
+}
+
+.admin-card {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #e9ecef;
+}
+
+/* Modal styles */
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+}
+
+/* Stats boxes */
+.stats-box {
+    transition: all 0.3s ease;
+}
+
+.stats-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Voting styles */
+.vote-btn {
+    transition: all 0.3s ease;
+}
+
+.vote-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Nominee card specific */
+.nominee-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+/* Winner badges */
+.winner-badge {
+    position: absolute;
+    z-index: 10;
+}
+
+/* Footer links */
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
