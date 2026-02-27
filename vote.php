@@ -361,7 +361,7 @@ include 'includes/header.php';
 
                     
                         <!-- Initialize the JS-SDK -->
-                        <script src="https://www.paypal.com/sdk/js?client-id=AUi-BrlXSlEAuBZmp-_34Zsxc-PN02kSrylnA2TzkPEBS5rupQB0WfmguZV9SiQKamgOTNE-1WgCCV5G&buyer-country=US"></script>
+                        <script src="https://www.paypal.com/sdk/js?client-id=ATaPxMLK8HSXmee6813Sy5fs4I2PmiAruEb_LOb3Kwk7LbNBNNN5S0nvN_4d-CA5w2SCo1hcBAR99isa&buyer-country=US"></script>
                         <script>
                             paypal.Buttons({
                             // style: {

@@ -51,8 +51,8 @@
 // =============================
 
 // Your sandbox credentials
-    $clientId = "AUi-BrlXSlEAuBZmp-_34Zsxc-PN02kSrylnA2TzkPEBS5rupQB0WfmguZV9SiQKamgOTNE-1WgCCV5G";
-    $secret   = "EFqG9GbZc16PcjYp9a3LiWzXvnW9L6Rt9AafYqViY6_fmJjELR3ZXphrNnXiXsiZbBqeWFipQXohAyVT";
+    $clientId = "ATaPxMLK8HSXmee6813Sy5fs4I2PmiAruEb_LOb3Kwk7LbNBNNN5S0nvN_4d-CA5w2SCo1hcBAR99isa";
+    $secret   = "EC8_Vsm4TKaHoUn0vT7mcZWcuY2eLqpURONLO9AWvr8FMQUxFhWFlWUmKfpzbS866MjZ429ONDeTOhsS";
 
     // 1️⃣ Get Access Token
     $ch = curl_init();
