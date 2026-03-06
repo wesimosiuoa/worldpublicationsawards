@@ -104,3 +104,97 @@ function sendEmail ($email, $subject, $message)
         }
     }
 }
+
+
+//calculate amount raised this year and last year, and total amount raised, note: nominee takes only 1.9 from each vote (3.00)
+function calculateAmountRaised($nomineeId) {
+    global $pdo;
+
+    $currentYear = date('Y');
+    $lastYear = $currentYear - 1;
+
+    try {
+        // Calculate amount raised this year
+        $stmtThisYear = $pdo->prepare(
+            "SELECT COUNT(*) 
+             FROM votes 
+             WHERE nominee_id = ? 
+             AND YEAR(created_at) = ?"
+        );
+        $stmtThisYear->execute([$nomineeId, $currentYear]);
+        $votesThisYear = $stmtThisYear->fetchColumn();
+        $amountThisYear = $votesThisYear * 1.9;
+
+        // Calculate amount raised last year
+        $stmtLastYear = $pdo->prepare(
+            "SELECT COUNT(*) 
+             FROM votes 
+             WHERE nominee_id = ? 
+             AND YEAR(vote_date) = ?"
+        );
+        $stmtLastYear->execute([$nomineeId, $lastYear]);
+        $votesLastYear = $stmtLastYear->fetchColumn();
+        $amountLastYear = $votesLastYear * 1.9;
+
+        // Calculate total amount raised
+        $totalVotes = $votesThisYear + $votesLastYear;
+        $totalAmount = $totalVotes * 1.9;
+
+        return [
+            'this_year' => number_format($amountThisYear, 2),
+            'last_year' => number_format($amountLastYear, 2),
+            'total' => number_format($totalAmount, 2)
+        ];
+    } catch (PDOException $e) {
+        return [
+            'this_year' => '0.00',
+            'last_year' => '0.00',
+            'total' => '0.00'
+        ];
+    }
+}
+
+//calculate total votes for a nominee this year and last year and total votes, note: each vote is 3.00 but we only care about the count of votes, not the amount raised
+function calculateTotalVotes($nomineeId) {
+    global $pdo;
+
+    $currentYear = date('Y');
+    $lastYear = $currentYear - 1;
+
+    try {
+        // Calculate votes this year
+        $stmtThisYear = $pdo->prepare(
+            "SELECT COUNT(*) 
+             FROM votes 
+             WHERE nominee_id = ? 
+             AND YEAR(created_at) = ?"
+        );
+        $stmtThisYear->execute([$nomineeId, $currentYear]);
+        $votesThisYear = $stmtThisYear->fetchColumn();
+
+        // Calculate votes last year
+        $stmtLastYear = $pdo->prepare(
+            "SELECT COUNT(*) 
+             FROM votes 
+             WHERE nominee_id = ? 
+             AND YEAR(vote_date) = ?"
+        );
+        $stmtLastYear->execute([$nomineeId, $lastYear]);
+        $votesLastYear = $stmtLastYear->fetchColumn();
+
+        // Calculate total votes
+        $totalVotes = $votesThisYear + $votesLastYear;
+
+        return [
+            'this_year' => (int)$votesThisYear,
+            'last_year' => (int)$votesLastYear,
+            'total' => (int)$totalVotes
+        ];
+    } catch (PDOException $e) {
+        return [
+            'this_year' => 0,
+            'last_year' => 0,
+            'total' => 0
+        ];
+    }
+}

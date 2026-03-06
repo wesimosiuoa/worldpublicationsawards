@@ -428,6 +428,24 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
         
+
+        // SOCIAL LINKS MODAL
+        <div class="modal fade" id="socialLinksModal" tabindex="-1" aria-labelledby="socialLinksModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="socialLinksModalLabel">Manage Nominee Social Links</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Here you can manage the social media links for each nominee. (This feature is under development)</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Trigger modal if editing -->
         <?php if ($edit_nominee): ?>
         <script>
@@ -445,6 +463,7 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_ASSOC);
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nomineeModal">
                 Add New Nominee
             </button>
+            
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#winnersModal">
                 View Winners
             </button>

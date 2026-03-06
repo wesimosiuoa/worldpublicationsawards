@@ -3,10 +3,35 @@
     include_once 'includes/helpers.php';
     include_once 'includes/messages.php';
 
-    // Display popup messages if available
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+    // Force HTTPS (important for payments)
+    // if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    //     header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+    //     exit;
+    // }
+
+    // // Secure session settings BEFORE session_start()
+    // ini_set('session.use_strict_mode', 1);
+    // ini_set('session.cookie_httponly', 1);
+    // ini_set('session.cookie_secure', 1);
+    // ini_set('session.cookie_samesite', 'Lax');
+    // ini_set('session.use_only_cookies', 1);
+
+    // session_set_cookie_params([
+    //     'lifetime' => 0,
+    //     'path' => '/',
+    //     'domain' => '',
+    //     'secure' => true,
+    //     'httponly' => true,
+    //     'samesite' => 'Lax'
+    // ]);
+
+    // session_start();
+
+    // // Regenerate session ID periodically (prevents fixation)
+    // if (!isset($_SESSION['initiated'])) {
+    //     session_regenerate_id(true);
+    //     $_SESSION['initiated'] = true;
+    // }
     displayPopupMessage();
     displayFlashMessage();
 ?>

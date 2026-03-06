@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'user')");
-            $result = $stmt->execute([$username, $email, $hashed_password]);
+            $result = $stmt->execute([$username, $email, $hashed_password], );
             
             if ($result) {
                 $success_message = 'Registration successful! You can now login.';

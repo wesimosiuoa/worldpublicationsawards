@@ -1,3 +1,5 @@
+
+
 <?php
 // Voting Page for World Publications Awards
 include 'includes/dbcon.inc.php';
@@ -8,6 +10,16 @@ require 'encryption/decoder.php';
 
 $geo = GeoLocator::locateVoter();
 $nominee_id = salted_decode($_GET['id']);
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+$csrf_token = $_SESSION['csrf_token'];
 
 // if ($nominee_id <= 0) {
 //     header('Location: index.php');
@@ -359,9 +371,15 @@ include 'includes/header.php';
                         <div id="paypal-button-container"></div>
                         <p id="result-message"></p>
 
-                    
+                        <?php 
+                        
+                            $client = 'ATaPxMLK8HSXmee6813Sy5fs4I2PmiAruEb_LOb3Kwk7LbNBNNN5S0nvN_4d-CA5w2SCo1hcBAR99isa'
+                        ?>
                         <!-- Initialize the JS-SDK -->
-                        <script src="https://www.paypal.com/sdk/js?client-id=ATaPxMLK8HSXmee6813Sy5fs4I2PmiAruEb_LOb3Kwk7LbNBNNN5S0nvN_4d-CA5w2SCo1hcBAR99isa&buyer-country=US"></script>
+                         <script>
+                            const CSRF_TOKEN = "<?= $csrf_token ?>";
+                        </script>
+                        <script src="https://www.paypal.com/sdk/js?client-id=<?= $client ?>&buyer-country=US"></script>
                         <script>
                             paypal.Buttons({
                             // style: {
@@ -401,7 +419,8 @@ include 'includes/header.php';
                                         },
                                         body: JSON.stringify({
                                             orderID: orderID,
-                                            nominee_id: nomineeId
+                                            nominee_id: nomineeId,
+                                            csrf_token: CSRF_TOKEN
                                         })
                                     })
                                     .then(response => response.json())

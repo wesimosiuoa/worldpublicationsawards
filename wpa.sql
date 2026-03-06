@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Feb 19, 2026 at 03:44 PM
+-- Generation Time: Mar 06, 2026 at 04:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -114,6 +114,22 @@ INSERT INTO `categories` (`id`, `award_id`, `name`, `slug`, `description`, `cate
 (52, 1, 'Photojournalism', 'photojournalism', 'Outstanding photojournalism work', 'publication', 1, 5, '2026-01-16 07:04:22', '2026-01-16 07:04:22'),
 (53, 1, 'Digital Innovation', 'digital-innovation', 'Innovation in digital journalism', 'publication', 1, 6, '2026-01-16 07:04:22', '2026-01-16 07:04:22'),
 (54, 1, 'Environmental Reporting', 'environmental-reporting', 'Excellence in environmental journalism', 'publication', 1, 7, '2026-01-16 07:04:22', '2026-01-16 07:04:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cookie_consent_logs`
+--
+
+CREATE TABLE `cookie_consent_logs` (
+  `id` int(11) NOT NULL,
+  `consent_status` enum('accepted','rejected') NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `user_agent` text NOT NULL,
+  `consent_date` datetime NOT NULL,
+  `consent_version` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -321,6 +337,20 @@ INSERT INTO `countries` (`id`, `name`, `iso_code`, `iso_code3`, `is_active`, `di
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login_attempts`
+--
+
+CREATE TABLE `login_attempts` (
+  `id` int(11) NOT NULL,
+  `username_attempted` varchar(255) DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `newsletter_subscribers`
 --
 
@@ -372,14 +402,14 @@ INSERT INTO `nominees` (`id`, `name`, `description`, `category_id`, `country_id`
 (16, 'Moafrika Radio TV', 'http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=wpa&table=countries', 54, 190, 'admin@1234.com', 'wezimosiuoa@wtit.com', 'moafrika-radio-tv', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=wpa&table=countries', 'individual', 1, 0, 13, 39.00, '2026-01-17 07:12:46', '2026-02-12 12:26:38'),
 (17, 'Global News Network', 'An international news organization delivering unbiased global coverage.', 1, 182, '', '', 'global-news-network', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://globalnews.example', 'organization', 1, 1, 3, 11.00, '2026-01-17 07:22:19', '2026-02-08 11:07:26'),
 (18, 'Albania Media Group', 'Leading independent media house in Albania.', 1, 183, '', '', 'albania-media-group', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://albaniamedia.example', 'organization', 1, 0, 1, 5.00, '2026-01-17 07:22:19', '2026-01-17 11:04:29'),
-(19, 'Algeria Press Today', 'Digital-first journalism platform covering North Africa.', 2, 184, '', '', 'algeria-press-today', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://algeriapress.example', 'organization', 1, 1, 8, 24.00, '2026-01-17 07:22:19', '2026-02-08 20:13:49'),
+(19, 'Algeria Press Today', 'Digital-first journalism platform covering North Africa.', 2, 184, '', '', 'algeria-press-today', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://algeriapress.example', 'organization', 1, 1, 9, 27.00, '2026-01-17 07:22:19', '2026-02-27 17:00:59'),
 (20, 'Andorra Times', 'Regional publication focusing on European policy and culture.', 2, 185, '', '', 'andorra-times', '481899230_536469076132096_3437832106723279604_n.jpg', 'https://andorratimes.example', 'organization', 1, 0, 2, 6.00, '2026-01-17 07:22:19', '2026-02-16 20:32:50'),
 (21, 'Angola Investigates', 'Investigative journalism initiative uncovering corruption.', 3, 186, '', '', 'angola-investigates', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://angolainvestigates.example', 'organization', 1, 1, 0, 0.00, '2026-01-17 07:22:19', '2026-01-17 11:04:18'),
 (22, 'Caribbean Voice', 'Independent Caribbean media organization.', 3, 187, '', '', 'caribbean-voice', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://caribbeanvoice.example', 'organization', 1, 0, 0, 0.00, '2026-01-17 07:22:19', '2026-01-17 11:04:18'),
 (23, 'Argentina Journal', 'Award-winning South American journalism platform.', 1, 188, '', '', 'argentina-journal', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://argentinajournal.example', 'organization', 1, 1, 1, 3.00, '2026-01-17 07:22:19', '2026-02-09 21:14:32'),
 (24, 'Armenia Insight', 'Nonprofit newsroom covering politics and social issues.', 2, 189, '', '', 'armenia-insight', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://armeniainsight.example', 'organization', 1, 0, 0, 0.00, '2026-01-17 07:22:19', '2026-01-17 11:04:18'),
 (25, 'Australian Review', 'National publication with global reach.', 1, 190, '', '', 'australian-review', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://australianreview.example', 'organization', 1, 1, 1, 3.00, '2026-01-17 07:22:19', '2026-02-09 21:14:20'),
-(26, 'Global Correspondent – Jane Doe', 'Independent journalist reporting from conflict zones.', 3, 188, '', '', 'jane-doe-global-correspondent', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://janedoe.example', 'individual', 1, 0, 1, 3.00, '2026-01-17 07:22:19', '2026-02-08 18:26:03'),
+(26, 'Global Correspondent – Jane Doe', 'Independent journalist reporting from conflict zones.', 3, 188, '', '', 'jane-doe-global-correspondent', '6969e6ba0c7a5_Screenshot 2025-10-08 200812.png', 'https://janedoe.example', 'individual', 1, 0, 3, 9.00, '2026-01-17 07:22:19', '2026-03-03 02:58:15'),
 (27, 'FORBES', 'https://chatgpt.com/g/g-p-695b7339b5f0819198c9276d9ab266e2/c/695b74d9-3efc-8324-9327-f97fe1cb0d54https://chatgpt.com/g/g-p-695b7339b5f0819198c9276d9ab266e2/c/695b74d9-3efc-8324-9327-f97fe1cb0d54', 50, 274, 'teboho@gmail.com', 'teboho@gmail.com', 'forbes', '696e2b25233ac_Screenshot 2025-10-13 221929.png', 'https://chatgpt.com/g/g-p-695b7339b5f0819198c9276d9ab266e2/c/695b74d9-3efc-8324-9327-f97fe1cb0d54', 'individual', 1, 1, 5, 15.00, '2026-01-19 13:01:25', '2026-02-08 11:09:26'),
 (28, 'TJATJI', 'tjatjiramathalea007@gmail.com', 53, 274, 'tjatjiramathalea007@gmail.com', 'tjatjiramathalea007@gmail.com', 'TJATJI', '698499a1b2e92_Screenshot 2025-10-08 200812.png', 'https://chatgpt.com/g/g-p-695b7339b5f0819198c9276d9ab266e2/c/695b74d9-3efc-8324-9327-f97fe1cb0d54', 'individual', 1, 1, 5, 15.00, '2026-02-05 13:22:41', '2026-02-08 11:05:19'),
 (29, 'THE POST OF INDIA', 'If you want the vote percentage to update instantly without reload, we can later add:\r\n\r\nAJAX refresh of nominee stats\r\n\r\nOr auto page reload after success\r\n\r\nBut your core system is now correct.', 53, 227, 'sb-8ysze48355569@personal.example.com', 'sb-8ysze48355569@personal.example.com', 'the-post-of-india', '481899230_536469076132096_3437832106723279604_n.jpg', 'http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=wpa&table=categories', 'individual', 1, 0, 1, 3.00, '2026-02-12 12:33:17', '2026-02-16 20:34:07'),
@@ -415,7 +445,11 @@ INSERT INTO `nominees_social_media_links` (`platform_id`, `platform_name`, `link
 (29, 'Website', 'http://localhost/worldpublicationawards/nominees/profile.php', 11),
 (30, 'TikTok', 'http://localhost/worldpublicationawards/nominees/profile.php', 11),
 (31, 'LinkedIn', 'http://localhost/worldpublicationawards/nominees/profile.php', 11),
-(32, 'Twitter', 'http://localhost/worldpublicationawards/nominees/profile.php', 11);
+(32, 'Twitter', 'http://localhost/worldpublicationawards/nominees/profile.php', 11),
+(33, 'YouTube', 'http://localhost/worldpublicationawards/nominees/profile.php', 27),
+(34, 'YouTube', 'http://localhost/worldpublicationawards/nominees/profile.php', 27),
+(35, 'YouTube', 'http://localhost/worldpublicationawards/nominees/profile.php', 27),
+(36, 'Website', 'http://localhost/worldpublicationawards/nominees/profile.php', 27);
 
 -- --------------------------------------------------------
 
@@ -473,7 +507,10 @@ INSERT INTO `paypal_transactions` (`id`, `order_id`, `nominee_id`, `amount`, `st
 (9, '182572252X845615V', 16, 3.00, 'COMPLETED', '2026-02-12 12:18:03'),
 (10, '9D4832851X7883836', 16, 3.00, 'COMPLETED', '2026-02-12 12:23:52'),
 (11, '7RT3958108450125R', 16, 3.00, 'COMPLETED', '2026-02-12 12:26:38'),
-(12, '3TF90718261852338', 29, 3.00, 'COMPLETED', '2026-02-12 12:34:28');
+(12, '3TF90718261852338', 29, 3.00, 'COMPLETED', '2026-02-12 12:34:28'),
+(13, '00A63866LN2464127', 19, 3.00, 'COMPLETED', '2026-02-27 17:00:59'),
+(14, '7H029799F37063448', 26, 3.00, 'COMPLETED', '2026-03-03 02:50:20'),
+(15, '3YT65995F2621712C', 26, 3.00, 'COMPLETED', '2026-03-03 02:58:15');
 
 -- --------------------------------------------------------
 
@@ -488,18 +525,21 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `role` enum('admin','user','stakeholder','nominee') DEFAULT 'user',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `failed_attempts` int(11) DEFAULT 0,
+  `lock_until` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@worldpublicationawards.org', '$2y$10$cl1yqmwmYgqNLeAS5KU47eUN9gCzKWcfd9L/yiM0wWEEv8PTbAZeu', 'admin', '2026-01-08 19:48:45', '2026-02-05 12:05:23'),
-(2, 'MOSIUOA WESI', 'wezimosiuoa@gmail.com', '$2y$10$ZKqSDTV2cRJT8V8P.jnbOuVDnoquH87ja7r09Le8ZE6efk5ih/0O2', 'nominee', '2026-01-16 07:08:14', '2026-02-08 19:54:15'),
-(3, 'tjatjiramathalea007', 'tjatjiramathalea007@gmail.com', '$2y$10$NQmmW95cE7RIGH5QkZLO/eY9a6nQG.h.8IOwR5dj9NuqkJ5ntnoDC', 'nominee', '2026-02-05 13:22:58', '2026-02-08 11:15:48'),
-(4, '324207316021', '324207316021@andhrauniversity.edu.in', '$2y$10$LyGvBmwAhHUm1cdZirKKgOPu93dKUWFe7vm0zTcXbpW87MMFU8XWu', 'nominee', '2026-02-13 07:13:28', '2026-02-13 07:13:28');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`, `failed_attempts`, `lock_until`) VALUES
+(1, 'admin', 'admin@worldpublicationawards.org', '$2y$10$cl1yqmwmYgqNLeAS5KU47eUN9gCzKWcfd9L/yiM0wWEEv8PTbAZeu', 'admin', '2026-01-08 19:48:45', '2026-02-05 12:05:23', 0, NULL),
+(2, 'MOSIUOA WESI', 'wezimosiuoa@gmail.com', '$2y$10$ZKqSDTV2cRJT8V8P.jnbOuVDnoquH87ja7r09Le8ZE6efk5ih/0O2', 'nominee', '2026-01-16 07:08:14', '2026-02-08 19:54:15', 0, NULL),
+(3, 'tjatjiramathalea007', 'tjatjiramathalea007@gmail.com', '$2y$10$NQmmW95cE7RIGH5QkZLO/eY9a6nQG.h.8IOwR5dj9NuqkJ5ntnoDC', 'nominee', '2026-02-05 13:22:58', '2026-02-08 11:15:48', 0, NULL),
+(4, '324207316021', '324207316021@andhrauniversity.edu.in', '$2y$10$LyGvBmwAhHUm1cdZirKKgOPu93dKUWFe7vm0zTcXbpW87MMFU8XWu', 'nominee', '2026-02-13 07:13:28', '2026-02-13 07:13:28', 0, NULL),
+(5, 'hello@worldpublicationawards.com', 'hello@worldpublicationawards.com', '$2y$10$SqV17avle8LX/dcbtsaJFeByWy3ZIvNBZ5URqSKbSnvT.EhGW94PW', 'user', '2026-03-03 09:29:56', '2026-03-03 09:29:56', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -588,7 +628,10 @@ INSERT INTO `votes` (`id`, `nominee_id`, `voter_ip`, `voter_email`, `amount`, `c
 (96, 16, '::1', 'sb-m43fg149399066@personal.example.com', 3.00, '2026-02-12 12:18:03', 'LS', 'LS'),
 (97, 16, '::1', 'sb-8ysze48355569@personal.example.com', 3.00, '2026-02-12 12:23:52', 'DJ', 'DJ'),
 (98, 16, '::1', 'sb-8ysze48355569@personal.example.com', 3.00, '2026-02-12 12:26:38', 'DJ', 'DJ'),
-(99, 29, '::1', 'sb-8ysze48355569@personal.example.com', 3.00, '2026-02-12 12:34:28', 'DJ', 'DJ');
+(99, 29, '::1', 'sb-8ysze48355569@personal.example.com', 3.00, '2026-02-12 12:34:28', 'DJ', 'DJ'),
+(100, 19, '::1', 'sb-a256r49643354@personal.example.com', 3.00, '2026-02-27 17:00:59', 'ZA', 'ZA'),
+(101, 26, '::1', 'sb-a256r49643354@personal.example.com', 3.00, '2026-03-03 02:50:20', 'ZA', 'ZA'),
+(102, 26, '::1', 'sb-a256r49643354@personal.example.com', 3.00, '2026-03-03 02:58:15', 'ZA', 'ZA');
 
 --
 -- Indexes for dumped tables
@@ -616,12 +659,24 @@ ALTER TABLE `categories`
   ADD UNIQUE KEY `unique_category_per_award` (`award_id`,`slug`);
 
 --
+-- Indexes for table `cookie_consent_logs`
+--
+ALTER TABLE `cookie_consent_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `iso_code` (`iso_code`),
   ADD UNIQUE KEY `iso_code3` (`iso_code3`);
+
+--
+-- Indexes for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `newsletter_subscribers`
@@ -698,10 +753,22 @@ ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
+-- AUTO_INCREMENT for table `cookie_consent_logs`
+--
+ALTER TABLE `cookie_consent_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+
+--
+-- AUTO_INCREMENT for table `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `newsletter_subscribers`
@@ -719,7 +786,7 @@ ALTER TABLE `nominees`
 -- AUTO_INCREMENT for table `nominees_social_media_links`
 --
 ALTER TABLE `nominees_social_media_links`
-  MODIFY `platform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `platform_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `otp_tokens`
@@ -731,19 +798,19 @@ ALTER TABLE `otp_tokens`
 -- AUTO_INCREMENT for table `paypal_transactions`
 --
 ALTER TABLE `paypal_transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- Constraints for dumped tables

@@ -1,6 +1,7 @@
 <?php
 // Login Page for World Publications Awards
 session_start();
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
 // If user is already logged in, redirect to appropriate dashboard
 // if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -223,6 +224,7 @@ include 'includes/header.php';
                         <?php if ($step === 'login'): ?>
                             <!-- Traditional Login Form -->
                             <form method="POST" action="" class="needs-validation" novalidate>
+                                
                                 <div class="mb-4">
                                     <label for="username" class="form-label fw-semibold">Username or Email</label>
                                     <input type="text" class="form-control form-control-lg" id="username" name="username" 

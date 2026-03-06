@@ -125,5 +125,20 @@ function getUserIP() {
     return $ipaddress;
 }
 
+function countNomineesPerVote(){
+    global $pdo;
+
+    try {
+        $stmt = $pdo->query(
+            "SELECT vote_id, COUNT(*) as nominee_count 
+             FROM nominees 
+             GROUP BY vote_id"
+        );
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+
 
 

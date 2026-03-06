@@ -234,7 +234,75 @@ $countries = $countriesStmt->fetchAll(PDO::FETCH_ASSOC);
                              alt="Nominee Logo" class="img-thumbnail" style="max-height: 150px;">
                         <?php endif; ?>
                     </div>
+                    <!-- update social media only  -->
+                     <?php 
+                     
+                            if (isset($_POST['add_social_media'])) {
+                                $platform = trim($_POST['platform'] ?? '');
+                                $social_link = trim($_POST['social_link'] ?? '');
+                                
+                                if (!empty($platform) && !empty($social_link)) {
+                                    try {
+                                        $stmt = $pdo->prepare("INSERT INTO nominees_social_media_links (platform_name,   link, nominee_id ) VALUES (?, ?, ?)");
+                                        $stmt->execute([$platform, $social_link, $nominee_id]);
+                                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                Social media link added successfully!
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                              </div>';
+                                    } catch (PDOException $e) {
+                                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                Error adding social media link: ' . htmlspecialchars($e->getMessage()) . '
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                              </div>';
+                                    }
+                                } else {
+                                    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            Please fill in all fields for social media link.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                          </div>';
+                                }
+                            }
+
+                     ?>
+                     <div class="container">
+                        <form method="POST">
+
+                            <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Platform</label>
+                                <select name="platform" class="form-select" required>
+                                <option value="">Select</option>
+                                <option>YouTube</option>
+                                <option>Instagram</option>
+                                <option>Facebook</option>
+                                <option>Twitter</option>
+                                <option>LinkedIn</option>
+                                <option>TikTok</option>
+                                <option>Website</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-8">
+                                <label class="form-label">Profile URL</label>
+                                <input type="url" name="social_link" class="form-control"
+                                    placeholder="https://..." required>
+                            </div>
+                            </div>
+
+                            <div class="mt-3 text-end">
+                            <button type="submit" name="add_social_media" class="btn btn-success">
+                                <i class="fas fa-save me-1"></i> Save Link
+                            </button>
+                            </div>
+                        </form>
+                    <br>
+                     </div>
                 </div>
+
+                
+                      
+
+
             </div>
             
             <div class="col-md-4">
